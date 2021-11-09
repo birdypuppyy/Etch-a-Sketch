@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    
+    <!-- Fix camelcase inconsistences 
+     -->
+
+    <div id='tableWrap'>
+
+     <div id='wrapper'>  </div>
+
+        <button class="buttonClear" onclick="gridColorClear()">Clear 
+       </button> 
+     <div id= userInputDiv>
+
+   </div>
+    <fieldset class="completeSettings">
+    <legend class="settingsLegend">Double click to show/hide settings</legend>
+     <div id="bottomBar" class="settings" style="display:none">
+        
+         <div id="colorsWrapper">
+            <div class="colors" id="red"> Red </div>
+            <div class="colors" id="orange">Orange</div>
+            <div class="colors" id="yellow">Yellow</div>
+            <div class="colors" id="green">Green</div>
+            <div class="colors" id="blue"> Blue </div>
+            <div class="colors" id="purple">Purple</div>
+            <div class="colors" id="black">Black</div>
+            <div class="colors" id="random">Random</div>
+         </div>
+    <div class="sliderSettings">
+        <div id="miscSettings">
+            <p>Saturation<br><span id="opac"></span> </p><input type="range" min="1" max="100" value="100"
+            class="opacitySlider" id="opacityRange"> 
+            <button class = 'setOpacity'>Set</button>
+        </div>
+
+        <div id="inputObjects"> 
+            <div class="rangeslider">
+            <p> <span id="boxSel"></span> x <span id='boxSelTwo'></span> boxes</p>
+            <input type="range" min="2" max="64" value="10"
+            class="myslider" id="sliderRange">
+        </div>
+        
+      <button class = 'setButton'>Set</button>
+      </div>
+    </div>
+      </fieldset>
+    
+
+    </div>
+    </div>
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="javascript.js"></script>
+</body>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+   let rgbaStr = '';
+
+$("#red").click(function(){
+    $('#wrapper').on("mouseover", '.gridClass', function(e){
+    $(this).css('background-color', 'rgba(255, 0, 0, 1)');
+    rgbaStr = 'rgba(255, 0, 0, 1)';
+});
+});
+
+$("#orange").click(function(){
+    $('#wrapper').on("mouseover", '.gridClass', function(e){
+    $(this).css('background-color', 'rgba(243, 158, 2, 1)');
+    rgbaStr = 'rgba(243, 158, 2, 1)';
+});
+});
+
+$("#yellow").click(function(){
+    $('#wrapper').on("mouseover", '.gridClass', function(e){
+    $(this).css('background-color', 'rgba(243, 243, 16, 1)');
+    rgbaStr = 'rgba(243, 243, 16, 1)';
+});
+});
+
+$("#green").click(function(){
+    $('#wrapper').on("mouseover", '.gridClass', function(e){
+    $(this).css('background-color', 'rgba(43, 183, 43, 1)');
+    rgbaStr = 'rgba(43, 183, 43, 1)';
+});
+});
+
+$("#blue").click(function(){
+    $('#wrapper').on("mouseover", '.gridClass', function(e){
+    $(this).css('background-color', 'rgba(33, 94, 240, 1)');
+    rgbaStr = 'rgba(33, 94, 240, 1)';
+});
+});
+
+$("#purple").click(function(){
+    $('#wrapper').on("mouseover", '.gridClass', function(e){
+    $(this).css('background-color', 'rgba(181, 18, 181, 1)');
+    rgbaStr = 'rgba(181, 18, 181, 1)';
+});
+});
+
+$("#black").click(function(){
+    $('#wrapper').on("mouseover", '.gridClass', function(e){
+    $(this).css('background-color', 'black');
+    rgbaStr = 'rgba(0, 0, 0, 1)';
+});
+});
+
+ const randomGen = document.querySelector('#random');
+$("#random").click(function(){
+    $('#wrapper').on("mouseover", '.gridClass', function(e){
+      getRandomColor();
+      $(this).css('background-color', rgbaStr);
+    })
+}); 
+
+
+$('.completeSettings').dblclick(function(){
+    $(this).find('#bottomBar').toggle();
+});
+
+var rangeslider = document.getElementById("sliderRange");
+var boxoutput = document.getElementById("boxSel");
+var boxoutputtwo = document.getElementById("boxSelTwo");
+boxoutputtwo.innerHTML = rangeslider.value;
+boxoutput.innerHTML = rangeslider.value;
+
+var opacitySlider = document.getElementById("opacityRange");
+var opacOutput = document.getElementById("opac");
+opacOutput.innerHTML = opacitySlider.value;
+
+
+rangeslider.oninput = function() {
+    boxoutput.innerHTML = this.value;
+    boxoutputtwo.innerHTML = this.value;
+}
+
+opacitySlider.oninput = function() {
+    opacOutput.innerHTML = this.value;
+}
+
+const btnClr = document.querySelector('.buttonClear');
+    btnClr.addEventListener('click', () => {
+      gridColorClear()
+    });
+
+const setBtn = document.querySelector('.setButton');
+    setBtn.addEventListener('click', () => {
+        getValue();
+        clearGrid();
+        changeGridCss();
+        changeGridSize();
+    });
+
+    const opacSet = document.querySelector('.setOpacity');
+    opacSet.addEventListener('click', () => {
+        getOpacityValue();
+        getOpacityColor();
+        setOpacity()
+        }); 
+
+function getValue(){
+    sliderValue = rangeslider.value;
+    console.log(sliderValue)
+}
+    
+function changeGridSize(){
+    let boxTotal = (sliderValue * sliderValue);
+    for (let gdiv = 0; gdiv < boxTotal; gdiv++){
+    addElement();
+    console.log(gdiv);
+}
+}
+
+function addElement(){
+    let wrapper = document.getElementById('wrapper');
+    let internalDiv = document.createElement('div');
+    internalDiv.className += "gridClass";
+    internalDiv.textContent = ' ';
+    wrapper.appendChild(internalDiv);
+}
+
+
+for (let gdiv = 0; gdiv < 256; gdiv++){
+    addElement();
+    console.log(gdiv);
+}
+
+function changeGridCss(){
+wrapper.style.gridTemplateColumns = `repeat(${sliderValue}, 1fr)`
+wrapper.style.gridTemplateRows = `repeat(${sliderValue}, 1fr)`
+}
+
+
+function clearGrid(){
+    $('#wrapper').empty();
+}
+
+ 
+ $('#wrapper').on("mouseover", '.gridClass', function(e){
+    $(this).css('background-color', 'rgba(255, 0, 0, 1)');
+    rgbaStr = 'rgba(255, 0, 0, 1)';
+});
+
+function gridColorClear(){         
+ $('.gridClass').attr("style", "background-color", 'white');
+}
+
+
+var randomNumber = undefined;
+
+function genRandom(){
+randomNumber = Math.floor(Math.random() * 6 | 0);
+console.log(randomNumber);
+} 
+
+
+function getRandomColor(){
+    genRandom()
+    if( randomNumber == 0){
+     $('#wrapper').on("mouseover", '.gridClass', function(e){
+     $(this).css('background-color', 'rgba(255, 0, 0, 1)'
+     
+     );});
+
+    } else if(randomNumber == 1){
+        rgbaStr = 'rgba(243, 158, 2, 1)'
+     $('#wrapper').on("mouseover", '.gridClass', function(e){
+     $(this).css('background-color', 'rgba(243, 158, 2, 1)'
+     
+     );});
+ 
+    } else if(randomNumber == 2){
+        rgbaStr = 'rgba(243, 243, 16, 1)'
+        $('#wrapper').on("mouseover", '.gridClass', function(e){
+     $(this).css('background-color', 'rgba(243, 243, 16, 1)'
+     
+     );});
+
+    } else if(randomNumber == 3){
+        rgbaStr = 'rgba(43, 183, 43, 1)'
+        $('#wrapper').on("mouseover", '.gridClass', function(e){
+     $(this).css('background-color', 'rgba(43, 183, 43, 1)'
+     
+     );});
+
+    } else if(randomNumber == 4){
+        rgbaStr = 'rgba(33, 94, 240, 1)'
+        $('#wrapper').on("mouseover", '.gridClass', function(e){
+     $(this).css('background-color', 'rgba(33, 94, 240, 1)'
+     
+     );});
+
+     } else if(randomNumber == 5){
+        rgbaStr = 'rgba(181, 18, 181, 1)'
+        $('#wrapper').on("mouseover", '.gridClass', function(e){
+     $(this).css('background-color', 'rgba(181, 18, 181, 1)'
+     
+     
+     );});
+     } else { 
+         console.log('e')
+     }
+    }
+
+    
+
+    function getOpacityValue(){
+        opacity = (opacitySlider.value * 0.01);
+        opacity = +opacity.toFixed(2)
+        console.log(opacity);
+    }
+
+
+    var opacCol = "";
+
+    function getOpacityColor() {
+    getOpacityValue();
+     opacCol = rgbaStr.substr(0, rgbaStr.lastIndexOf(", ")+1) + " " + opacity + ")";
+    console.log(opacCol)
+    return;
+}
+
+    function setOpacity(){
+        if(!(opacCol == 0)){
+        $('#wrapper').on("mouseover", '.gridClass', function(e){
+        $(this).css('background-color', opacCol)
+        });};
+    }
+
+</script>
+</html>  

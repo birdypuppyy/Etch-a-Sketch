@@ -1,0 +1,243 @@
+body{
+    background: rgb(206,246,249);
+    background: linear-gradient(90deg, rgba(206,246,249,1) 5%, rgba(223,249,255,1) 47%, rgba(252,237,251,1) 97%); 
+    font-family: Tahoma, sans-serif;
+}
+#tableWrap{
+    height: 800px;
+    display: flex;
+    justify-content: center;
+}
+
+#wrapper {
+  background: white;  
+  height: 800px;
+  width: 800px;
+  display: grid;
+  grid-template-columns:repeat(16,1fr);
+  border: solid 3px black;
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.gridClass {
+  display: inline-block;
+  border: 1px solid;
+  
+}
+
+
+#userInputDiv{
+    position: absolute;
+    bottom: 50px;
+    
+}
+
+.completeSettings{
+    display: flex;
+    border: transparent;
+    position: fixed;
+    left: 0px;
+    height: 75%;
+    user-select: none;
+    width: 10%;
+    text-align: center;
+}
+
+.settingsLegend{
+    background-color: rgba(252, 237, 251, 0.32);
+    border: solid rgba(34, 20, 20, 0.22);
+    color: rgba(0, 0, 0, 0.49);
+    border-radius: 20px;
+    padding: 3px;
+}
+
+.settingsLegend:hover{
+    background-color: rgb(252, 237, 251);
+    border: solid rgb(212, 175, 211);
+    color: rgba(0, 0, 0);
+    transition: 1s;
+}
+
+.settingsLegend:not(hover), .buttonClear:not(hover), .setButton:not(hover), .setOpacity:not(hover){
+    transition: 0.6s;
+}
+
+.sliderSettings{
+    border: solid 3px black;
+    border-top: thin;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+
+#bottomBar .content {
+    display: none;
+    padding : 5px;
+    
+}
+
+#bottomBar{
+    display: flex;
+    flex-direction: column;
+    bottom: 10px;
+    background-color: rgb(252, 237, 251);
+    justify-content: center;
+    text-align: center;
+    border-radius: 15px;
+    
+}
+
+#colorsWrapper{
+    display: flex;
+    flex-direction: column;
+    height: 10%;
+    height: 75%;
+    border-top-left-radius: 12px;
+    transition: 0.4s;
+    border: solid 2px #000;
+    border-top-right-radius: 12px;
+    border-bottom: 2px;
+}
+
+#sliderSettings{
+    border: solid thin black;
+}
+
+#miscSettings #inputObjects{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    height: 25%;
+    flex-direction: column;
+}
+
+
+#opacityRange{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.buttonClear{
+    font-size: 30px;
+    height: 50px;
+    width: 100px;
+    position: absolute; 
+    bottom: 3%;
+    justify-content: center;
+    display: flex;
+    background-color: #a1eaef;
+}
+
+.setButton {
+    margin: 5px;
+    width: 40px;
+    font-size: 14px;
+    background-color: #c0ecf1;
+}
+
+.setOpacity {
+    margin: 5px;
+    width: 40px;
+    font-size: 14px;
+    background-color: #c0ecf1;
+}
+
+.setButton, .buttonClear, .setOpacity{
+    border-radius: 10px;
+    border: solid thin black;
+}
+
+.setButton:hover, .buttonClear:hover, .setOpacity:hover{
+    background-color: #6cd3de;
+    transition: 0.3s;
+}
+
+#red, #orange, #yellow, #green, #blue, #purple, #black, #random{
+    height: 20%;
+    padding-top: 5px;
+    border: solid thin black;
+}
+
+#red:hover, #orange:hover, #yellow:hover, #green:hover, #blue:hover, #purple:hover, #black:hover, #random:hover{
+    border: solid 2px rgba(222, 246, 246, 0.14);
+    transition: 0.2s;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#red:hover {
+    border-top: 0px;
+    padding-bottom: 7px;
+}
+
+#random:hover{
+    padding-top: 7px;
+}
+
+#red:not(hover), #orange:not(hover), #yellow:not(hover), #green:not(hover), #blue:not(hover), #purple:not(hover), #black:not(hover), #random:not(hover){
+    transition: 0.3s;
+}
+
+#red{
+    background-color: #f03232;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    
+}
+
+#orange{
+    background-color: #f39e02;
+}
+
+#yellow{
+    background-color: #f3f310;
+}
+
+#green {
+    background-color: #2bb72b;
+}
+
+#blue {
+    background-color: #215ef0;
+    color: white;
+}
+
+#purple{
+    background-color: #b512b5;
+    color: white;
+}
+
+#black{
+    background-color: #000000f2;
+    color: white;
+}
+
+#random{
+    background-color: #fff;
+
+}
+
+
+    .myslider, .opacitySlider{
+        -webkit-appearance: none;
+        background: #fdfcff;
+         border-radius: 7px;
+        border: solid thin #894a86;
+       }
+
+
+       #miscSettings {
+        border: solid #ddaedb;
+        /*! border-top: solid 1px #5d385b; */
+        border-top-left-radius: 1px;
+        border-top-right-radius: 1px;
+      }
+      #inputObjects {
+        border: solid #d4afd3;
+        /*! border-radi: 10px; */
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
